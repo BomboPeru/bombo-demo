@@ -4,7 +4,10 @@
   "private": true,
   "dependencies": {
     "antd": "^3.1.4",
+    "aphrodite": "^1.2.5",
     "axios": "^0.17.1",
+    "glamor": "^2.20.40",
+    "glamorous": "^4.11.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-scripts": "1.1.0"

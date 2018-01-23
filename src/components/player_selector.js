@@ -7,8 +7,9 @@ class PlayerSelector extends React.Component {
         super(props);
         this.kindOfPlayer = props.kind;
         this.listFetch = this.listFetch.bind(this);
+        this.handleChange = this.handleChange.bind(this);
         this.playersOptions = [];
-        this.state = { loading: true, player: {} };
+        this.state = { loading: true, player: null };
 
 
     }
@@ -33,22 +34,32 @@ class PlayerSelector extends React.Component {
         });
     }
     handleChange(value) {
+        this.setState((prevState) => {
+            return {...prevState, player: this.playersOptions[value]}
+        });
         console.log(`selected ${value}`);
     }
     render() {
         return (
-            <Select style={{ width: 220 }} onChange={this.handleChange}>
-                {this.playersOptions.map((pl, i) => {
-                    return (
-                        <Select.Option
-                            value={pl.name.toLowerCase().replace(' ', '_')} 
-                            key={i}
-                        >
-                            {pl.nation} - {pl.name}
-                        </Select.Option>
-                    )
-                })}
-            </Select>
+            <div>
+                <Select
+                    style={{ width: 220 }}
+                    onChange={this.handleChange}
+                    showSearch
+                >
+                    {this.playersOptions.map((pl, i) => {
+                        return (
+                            <Select.Option
+                                value={i}
+                                key={i}
+                            >
+                                {pl.nation} - {pl.name}
+                            </Select.Option>
+                        )
+                    })}
+                </Select>
+                <h2>{this.state.player?this.state.player.team.toString():''}</h2>
+            </div>
         );
     }
 }
