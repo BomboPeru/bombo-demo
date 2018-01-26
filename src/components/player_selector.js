@@ -54,29 +54,39 @@ class PlayerSelector extends React.Component {
                 <Select
                     style={{ width: 220 }}
                     onChange={this.handleChange}
-                    showSearch>
+                    showSearch
+                    placeholder="Select your player"
+                    optionFilterProp="children"
+                    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                    >
                     {this.playersOptions.map((pl, i) => {
                         return (
                             <Select.Option value={i} key={i}>
                                 {pl.team[0].toUpperCase() +
-                                    pl.team.substring(1)}{' '}
-                                - {pl.name}
+                                    pl.team.substring(1) +
+                                    ' - ' +
+                                    pl.name}
                             </Select.Option>
                         );
                     })}
                 </Select>
                 <h2>
                     {this.state.player ? (
-                        (
-                            <div>
-                                <img
-                                    src={blankGif}
-                                    class={`flag flag-${this.state.player.nation_code}`}
-                                    style={{display: 'inline-bloc'}}
-                                />
-                                <h3 style={{display: 'inline-bloc'}}> {this.state.player.nation} </h3>
-                            </div>
-                        )
+                        <div style={{ marginTop: '8px' }}>
+                            <img
+                                src={blankGif}
+                                class={`flag flag-${
+                                    this.state.player.nation_code
+                                }`}
+                                style={{
+                                    display: 'inline-block',
+                                    marginRight: '10px'
+                                }}
+                            />
+                            <h5 style={{ display: 'inline-block' }}>
+                                {this.state.player.nation}
+                            </h5>
+                        </div>
                     ) : (
                         ''
                     )}

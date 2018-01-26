@@ -46,7 +46,7 @@ class App extends Component {
             porteros: [1, 1],
             defensas: [3, 5],
             centrocampistas: [3, 5],
-            delanteros: [3, 5]
+            delanteros: [1, 3]
         };
 
         this.state = {
